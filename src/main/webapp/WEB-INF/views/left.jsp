@@ -10,14 +10,13 @@
 		width: 80px;
 	}
 </style>
-<script type="text/javascript" src="../../js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("button").click(function() {
 			if(confirm("정말 로그아웃할래?")){
-				//이동하기
-				location.href = "logout.jsp";
-				top.center.location.reload();
+				
+				location.href = "${pageContext.request.contextPath}/logout.kosta";
 			}//if
 		});//click
 		
@@ -26,13 +25,6 @@
 </head>
 <body>
 <%
-	request.setCharacterEncoding("UTF-8");
-	
-	String dbId = "asd";
-	String dbPwd = "1234";
-	
-	String id = request.getParameter("id");
-	String pwd = request.getParameter("pwd");
 
 	if(session.getAttribute("id") == null){
 %>

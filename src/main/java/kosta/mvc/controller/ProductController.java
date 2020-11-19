@@ -2,6 +2,8 @@ package kosta.mvc.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +37,11 @@ public class ProductController {
 	 * 상품등록폼
 	 * */
 	@RequestMapping("{url}.kosta")
-	public void insertForm() {	}//요청에 들어오는 mapping의 이름과 같은 뷰로 이동한다.
+	public void insertForm(HttpSession session)throws MyErrorException {	
+		if(session.getAttribute("id")==null) {
+			throw new MyErrorException("회원만 접근 가능합니다.");
+		}
+	}//요청에 들어오는 mapping의 이름과 같은 뷰로 이동한다.
 	
 	/**
 	 * 상품등록하기
@@ -59,7 +65,10 @@ public class ProductController {
 	}
 	
 	@RequestMapping("/read.kosta")
-	public ModelAndView detail(String code)throws MyErrorException {
+	public ModelAndView detail(String code,HttpSession session)throws MyErrorException {
+		if(session.getAttribute("id")==null) {
+			throw new MyErrorException("회원만 접근가능합니다.");
+		}
 		ProductDTO dto = service.detail(code);
 		return new ModelAndView("detailForm", "dto",dto);
 	}

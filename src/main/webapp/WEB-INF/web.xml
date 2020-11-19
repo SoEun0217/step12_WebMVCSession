@@ -49,7 +49,6 @@
 		<servlet-name>appServlet</servlet-name>
 		<url-pattern>*.kosta</url-pattern>
 		<url-pattern>/del/*</url-pattern>
-		<url-pattern>/detail/*</url-pattern>
 	</servlet-mapping>
 
 </web-app>
